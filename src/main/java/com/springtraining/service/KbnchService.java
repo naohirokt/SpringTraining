@@ -29,7 +29,7 @@ public class KbnchService {
 	}
 
 	public Map<Object, String> getKbnchMap(String kbnch) {
-		List<Kbnch> list = rep.findByIdKbnchOrderBySortNo(kbnch);
+		List<Kbnch> list = getKbnch(kbnch);
 		Map<Object, String> map = new HashMap<Object, String>();
 		if (list.size() > 0) {
 			for (Kbnch k : list) {

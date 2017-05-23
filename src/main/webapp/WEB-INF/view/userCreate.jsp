@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
-
 <html>
 <head>
 	<meta charset="utf-8">
@@ -103,7 +96,7 @@
 		<div class="form-group">
 			<f:label path="password" class="col-md-2 control-label">パスワード</f:label>
 			<div class="col-md-8">
-				<f:password path="password" class="form-control" size="5"/>
+				<f:password path="password" class="form-control" showPassword="true" size="5"/>
 				<f:errors path="password" element="div" cssStyle="color:red" />
 			</div>
 		</div>

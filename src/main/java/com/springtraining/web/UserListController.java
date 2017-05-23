@@ -1,7 +1,5 @@
 package com.springtraining.web;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.springtraining.form.UserListForm;
-import com.springtraining.model.MUser;
 import com.springtraining.service.UserService;
 import com.springtraining.vallidation.GroupOrder;
 import com.springtraining.vallidation.UserListValidator;
@@ -35,16 +32,10 @@ public class UserListController {
 	}
 
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)
-	public String userList(Model model) {
+	public String userList(Model model, @ModelAttribute("userListForm") UserListForm form) {
 		System.out.println("userList");
-		List<MUser> userList = userService.getUserAll();
-		if (userList.size() > 0) {
-			UserListForm ulf = new UserListForm();
-			model.addAttribute("userListForm", ulf);
-			model.addAttribute("userList", userList);
-			return "userList";
-		}
-		return "top";
+		model.addAttribute("userList", userService.getUserAll());
+		return "userList";
 	}
 
 	@RequestMapping(value = "/userList", params = "create", method = RequestMethod.POST)
@@ -55,13 +46,10 @@ public class UserListController {
 
 	@RequestMapping(value = "/userList", params = "update", method = RequestMethod.POST)
 	public String update(Model model, @Validated(GroupOrder.class) @ModelAttribute("userListForm") UserListForm form,
-			RedirectAttributes attributes, BindingResult result) {
-		System.out.println("updateCheck");
-//		if (form.getUserIds() == null) {
-//			return "redirect:/userList";
-//		}
+			BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			return "redirect:/userList";
+			model.addAttribute("userList", userService.getUserAll());
+			return "userList";
 		}
 		System.out.println("update");
 		attributes.addFlashAttribute("userListForm", form);
@@ -70,23 +58,23 @@ public class UserListController {
 
 	@RequestMapping(value = "/userList", params = "delete", method = RequestMethod.POST)
 	public String delete(Model model, @Validated(GroupOrder.class) @ModelAttribute("userListForm") UserListForm form,
-			RedirectAttributes attributes, BindingResult result) {
+			BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			return "redirect:/userList";
+			model.addAttribute("userList", userService.getUserAll());
+			return "userList";
 		}
 		System.out.println("delete");
 		attributes.addFlashAttribute("userListForm", form);
 		return "redirect:/delete";
 	}
 
-	@RequestMapping(value = "/userList/back", method = RequestMethod.GET)
+	@RequestMapping(value = "/userList", params = "back", method = RequestMethod.POST)
 	public String back(Model model) {
 		return "redirect:/top";
 	}
 
-	@RequestMapping(value = "/edit", params = "logout", method = RequestMethod.POST)
+	@RequestMapping(value = "/userList", params = "logout", method = RequestMethod.POST)
 	public String logout(Model model) {
-		System.out.println("userlist.logout");
 		return "redirect:/";
 	}
 }

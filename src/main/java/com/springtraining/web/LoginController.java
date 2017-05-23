@@ -46,6 +46,7 @@ public class LoginController {
 			loginForm.setLoginUserName(user.getName());
 			loginForm.setLoginUserDepartmentName(user.getMSection().getSectionName());
 			model.addAttribute("loginForm", loginForm);
+			model.addAttribute("auth", user.getAuth());
 			return "top";
 		} else {
 			return "index";

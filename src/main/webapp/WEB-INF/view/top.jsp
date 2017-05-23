@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
-
 <html>
 <head>
 	<meta charset="utf-8">
@@ -32,7 +25,9 @@
 				<div class="col-md-offset-7 col-md-5">
 					<div class="pull-right">
 						<a href="/SpringTraining2/userList">ユーザー</a>
-						<a href="/SpringTraining2/kintaiList">勤怠一覧（月次）</a>
+						<c:if test="${auth == 0}">
+							<a href="/SpringTraining2/kintaiList">勤怠一覧（月次）</a>
+						</c:if>
 					</div>
 				</div>
 			</div>

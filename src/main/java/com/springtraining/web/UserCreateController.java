@@ -49,10 +49,15 @@ public class UserCreateController {
 		binder.addValidators(validator);
 	}
 
-	@RequestMapping(method=RequestMethod.GET)
-	public String userCreate(Model model) {
-		System.out.println("userCreate");
+	@ModelAttribute("userCreateForm")
+	public UserCreateForm initForm() {
 		UserCreateForm form = new UserCreateForm();
+		return form;
+	}
+
+	@RequestMapping(method=RequestMethod.GET)
+	public String userCreate(Model model, @ModelAttribute("userCreateForm") UserCreateForm form) {
+		System.out.println("userCreate");
 		setSelectBox(form);
 		model.addAttribute("userCreateForm", form);
 		model.addAttribute("dispMode", DispMode.INPUT.getValue());

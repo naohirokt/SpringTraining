@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
-
 <html>
 <head>
 	<meta charset="utf-8">
@@ -44,14 +37,14 @@
 			<div class="col-sm-offset-2 col-sm-8">
 				<c:choose>
 					<c:when test="${dispMode == 0}">
-						<button name="confirm">確認</button>
+						<button name="confirm" class="btn btn-sm btn-primary">確認</button>
 						<button type="button" onclick="location.href='/SpringTraining2/userList'">戻る</button>
 						<div class="pull-right">
 							<button name="logout">ログアウト</button>
 						</div>
 					</c:when>
 					<c:when test="${dispMode == 1}">
-						<button name="complete">完了</button>
+						<button name="complete" class="btn btn-sm btn-primary">完了</button>
 						<button type="button" onclick="javascript:history.back()">戻る</button>
 					</c:when>
 					<c:when test="${dispMode == 2}">
@@ -95,7 +88,7 @@
 		<div class="form-group">
 			<label for="password" class="col-sm-2 control-label">パスワード</label>
 			<div class="col-sm-8">
-				<f:password path="password" class="form-control" size="5"/>
+				<f:password path="password" class="form-control" showPassword="true" maxlength="5"/>
 				<f:errors path="password" element="div" cssStyle="color:red" />
 			</div>
 		</div>

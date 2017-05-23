@@ -8,4 +8,6 @@ import com.springtraining.model.TTime;
 @Repository
 public interface TTimeRepository extends JpaRepository<TTime, String>{
 //	public List<TTime> findByMUserUserId(String userId);
+
+	public boolean existsByUserIdAndAttendanceType(String userId, String attendanceType);
 }

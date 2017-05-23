@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
-
 <html>
 <head>
 	<meta charset="utf-8">
@@ -27,11 +20,13 @@
 				</div>
 				<div class="col-md-6">
 					<div class="pull-right">
-						<button type="button" onclick="location.href='/SpringTraining2/userList/back'">戻る</button>
+<!-- 						<button type="button" onclick="location.href='/SpringTraining2/userList/back'">戻る</button> -->
+						<button name="back">戻る</button>
 						<button name="logout">ログアウト</button>
 					</div>
 				</div>
 			</div>
+			<f:errors path="userIds" element="div" cssStyle="color:red" />
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
@@ -42,10 +37,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="userList" items="${userList}" >
+					<c:forEach var="userList" items="${userList}">
 						<tr>
-							<td><f:radiobutton path="userIds" value="${userList.getUserId()}"/>
-							<f:errors path="userIds" element="div" cssStyle="color:red" /></td>
+							<td>
+								<f:radiobutton path="userIds" value="${userList.getUserId()}"/>
+							</td>
 							<td><c:out value="${userList.getUserId()}"/></td>
 							<td><c:out value="${userList.getName()}"/></td>
 							<td>

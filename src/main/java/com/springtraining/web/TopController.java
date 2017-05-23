@@ -15,6 +15,7 @@ import com.springtraining.form.LoginForm;
 import com.springtraining.model.TTime;
 import com.springtraining.model.TTimePK;
 import com.springtraining.repository.TTimeRepository;
+import com.springtraining.service.UserService;
 
 @Controller
 @SessionAttributes(value = "loginForm")
@@ -22,28 +23,31 @@ import com.springtraining.repository.TTimeRepository;
 public class TopController {
 
 	@Autowired
+	private UserService userService;
+
+	@Autowired
 	private TTimeRepository timeRep;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String init(Model model) {
+	public String init(Model model, LoginForm form) {
 		return "top";
 	}
 
-	@RequestMapping(params = "shukkin", method = RequestMethod.POST)
+	@RequestMapping(params="shukkin", method=RequestMethod.POST)
 	public String shukkin(LoginForm loginForm, Model model) {
 		System.out.println("shukkin");
 		insertTTime(loginForm, true);
 		return "top";
 	}
 
-	@RequestMapping(params = "taikin", method = RequestMethod.POST)
+	@RequestMapping(params="taikin", method=RequestMethod.POST)
 	public String taikin(LoginForm loginForm) {
 		System.out.println("taikin");
 		insertTTime(loginForm, false);
 		return "top";
 	}
 
-	@RequestMapping(params = "logout", method = RequestMethod.POST)
+	@RequestMapping(params="logout", method=RequestMethod.POST)
 	public String logout() {
 		System.out.println("logout");
 		return "redirect:/";

@@ -23,7 +23,5 @@ public class UserCreateValidator implements Validator {
 		if (userRep.exists(userCreateForm.getUserId())) {
 			errors.rejectValue("userId", "userCreateForm.userExists");
 		}
-
 	}
-
 }

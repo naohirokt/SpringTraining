@@ -16,9 +16,7 @@ public class UserListValidator implements Validator {
 	public void validate(Object form, Errors errors) {
 		UserListForm userListForm = (UserListForm)form;
 		if (userListForm.getUserIds() == null) {
-			System.out.println("userIdsCheck");
 			errors.rejectValue("userIds", "userListForm.userNoSelect", "選択してください");
-			System.out.println("userIdsCheck END");
 		}
 	}
 
