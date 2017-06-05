@@ -3,6 +3,7 @@ package com.springtraining.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,12 +28,12 @@ public class LoginController {
 		return new LoginForm();
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String index(Model model) {
 		return "index";
 	}
 
-	@RequestMapping(value = "/login", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value="/login", method={ RequestMethod.POST, RequestMethod.GET })
 	public String login(Model model, @Validated(GroupOrder.class) LoginForm loginForm,
 			BindingResult result) {
 
@@ -42,12 +43,12 @@ public class LoginController {
 
 		MUser user = userService.getUser(loginForm.getUserId(), loginForm.getLoginPassword());
 
-		if (user != null) {
+		if (!StringUtils.isEmpty(user)) {
 			loginForm.setLoginUserName(user.getName());
 			loginForm.setLoginUserDepartmentName(user.getMSection().getSectionName());
+			loginForm.setLoginUserAuth(String.valueOf(user.getAuth()));
 			model.addAttribute("loginForm", loginForm);
-			model.addAttribute("auth", user.getAuth());
-			return "top";
+			return "redirect:/top";
 		} else {
 			return "index";
 		}

@@ -1,11 +1,15 @@
 package com.springtraining.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The primary key class for the T_TIME database table.
- * 
+ *
  */
 @Embeddable
 public class TTimePK implements Serializable {
@@ -18,9 +22,6 @@ public class TTimePK implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name="ATTENDANCE_DATE")
 	private java.util.Date attendanceDate;
-
-	@Column(name="ATTENDANCE_TYPE")
-	private String attendanceType;
 
 	public TTimePK() {
 	}
@@ -36,12 +37,6 @@ public class TTimePK implements Serializable {
 	public void setAttendanceDate(java.util.Date attendanceDate) {
 		this.attendanceDate = attendanceDate;
 	}
-	public String getAttendanceType() {
-		return this.attendanceType;
-	}
-	public void setAttendanceType(String attendanceType) {
-		this.attendanceType = attendanceType;
-	}
 
 	public boolean equals(Object other) {
 		if (this == other) {
@@ -51,10 +46,9 @@ public class TTimePK implements Serializable {
 			return false;
 		}
 		TTimePK castOther = (TTimePK)other;
-		return 
+		return
 			this.userId.equals(castOther.userId)
-			&& this.attendanceDate.equals(castOther.attendanceDate)
-			&& this.attendanceType.equals(castOther.attendanceType);
+			&& this.attendanceDate.equals(castOther.attendanceDate);
 	}
 
 	public int hashCode() {
@@ -62,8 +56,7 @@ public class TTimePK implements Serializable {
 		int hash = 17;
 		hash = hash * prime + this.userId.hashCode();
 		hash = hash * prime + this.attendanceDate.hashCode();
-		hash = hash * prime + this.attendanceType.hashCode();
-		
+
 		return hash;
 	}
 }

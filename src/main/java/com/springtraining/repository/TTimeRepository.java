@@ -4,10 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.springtraining.model.TTime;
+import com.springtraining.model.TTimePK;
 
 @Repository
 public interface TTimeRepository extends JpaRepository<TTime, String>{
-//	public List<TTime> findByMUserUserId(String userId);
-
-	public boolean existsByUserIdAndAttendanceType(String userId, String attendanceType);
+	public TTime findById(TTimePK key);
 }

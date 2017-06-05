@@ -20,6 +20,8 @@ public class LoginForm {
 
 	private String loginUserDepartmentName;
 
+	private String loginUserAuth;
+
 	public String getUserId() {
 		return userId;
 	}
@@ -50,6 +52,14 @@ public class LoginForm {
 
 	public void setLoginUserDepartmentName(String loginUserDepartmentName) {
 		this.loginUserDepartmentName = loginUserDepartmentName;
+	}
+
+	public String getLoginUserAuth() {
+		return loginUserAuth;
+	}
+
+	public void setLoginUserAuth(String loginUserAuth) {
+		this.loginUserAuth = loginUserAuth;
 	}
 
 }

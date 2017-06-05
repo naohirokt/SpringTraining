@@ -33,13 +33,13 @@ public class KintaiListController {
 		return new KintaiListForm();
 	}
 
-	@RequestMapping(value = "kintaiList", method = RequestMethod.GET)
+	@RequestMapping(value="kintaiList", method=RequestMethod.GET)
 	public String init(Model model) {
 		model.addAttribute("sectionList", getSectionMap());
 		return "kintaiList";
 	}
 
-	@RequestMapping(value = "kintaiList", params = "search", method = RequestMethod.POST)
+	@RequestMapping(value="kintaiList", params="search", method=RequestMethod.POST)
 	public String searchKintaiList(Model model, KintaiListForm form) {
 		System.out.println("kintaiList");
 
@@ -58,9 +58,9 @@ public class KintaiListController {
 		return "kintaiList";
 	}
 
-	@RequestMapping(value = "kintaiList", method = RequestMethod.POST)
+	@RequestMapping(value="kintaiList", method=RequestMethod.POST)
 	public String back(Model model) {
-		return "top";
+		return "redirect:/top";
 	}
 
 	private Map<String, String> getSectionMap() {
@@ -77,7 +77,7 @@ public class KintaiListController {
 	private String getKintaiListSql() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("SELECT ");
-		sb.append("	u.user_id AS userId ");
+		sb.append("	 u.user_id AS userId ");
 		sb.append("	,u.name AS userName ");
 		sb.append("	,SUM((t2.attendance_date - t1.attendance_date) * 24) AS workHours ");
 		sb.append("	,SUM((t2.attendance_date - TO_DATE(TO_CHAR(t2.attendance_date, 'YYYY/MM/DD') || ' 18:00:00', 'YYYY/MM/DD HH24:MI:SS')) * 24) AS overTime ");
@@ -118,11 +118,11 @@ public class KintaiListController {
 		sb.append("	) t2 ");
 		sb.append("WHERE ");
 		sb.append("	u.user_id = t1.user_id ");
-		sb.append("AND t1.user_id = t2.user_id ");
-		sb.append("AND trunc(t1.attendance_date) = trunc(t2.attendance_date) ");
-		sb.append("AND u.section_id = ? ");
+		sb.append("	AND t1.user_id = t2.user_id ");
+		sb.append("	AND trunc(t1.attendance_date) = trunc(t2.attendance_date) ");
+		sb.append("	AND u.section_id = ? ");
 		sb.append("GROUP BY ");
-		sb.append("	u.user_id ");
+		sb.append("	 u.user_id ");
 		sb.append("	,u.name ");
 		return sb.toString();
 	}

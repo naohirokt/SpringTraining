@@ -24,4 +24,5 @@ public class UserCreateValidator implements Validator {
 			errors.rejectValue("userId", "userCreateForm.userExists");
 		}
 	}
+
 }

@@ -44,12 +44,12 @@
 					<tbody>
 						<c:forEach var="kintaiList" items="${kintaiList}">
 							<tr>
-								<td><c:out value="${ kintaiList.getUserName() }" /></td>
-								<td><c:out value="${ kintaiList.getWorkHours() }" /></td>
-								<td><c:out value="${ kintaiList.getOverTime() }" /></td>
-								<td><c:out value="${ kintaiList.getWorkingDay() }" /></td>
-								<td><c:out value="${ kintaiList.getLateDays() }" /></td>
-								<td><c:out value="${ kintaiList.getLeaveEarlyDays() }" /></td>
+								<td><c:out value="${kintaiList.getUserName()}" /></td>
+								<td><c:out value="${kintaiList.getWorkHours()}" /></td>
+								<td><c:out value="${kintaiList.getOverTime()}" /></td>
+								<td><c:out value="${kintaiList.getWorkingDay()}" /></td>
+								<td><c:out value="${kintaiList.getLateDays()}" /></td>
+								<td><c:out value="${kintaiList.getLeaveEarlyDays()}" /></td>
 							</tr>
 						</c:forEach>
 					</tbody>
